@@ -4,6 +4,6 @@ namespace Web.ViewModels
 {
     public class HomeVM
     {
-        public List<Slider> Slider { get; set; }
+        public List<Slider> Sliders { get; set; }
     }
 }

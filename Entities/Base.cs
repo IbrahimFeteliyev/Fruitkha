@@ -10,6 +10,6 @@ namespace Entities
     {
         public int ID { get; set; }
         public DateTime PublishDate { get; set; }
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
     }
 }

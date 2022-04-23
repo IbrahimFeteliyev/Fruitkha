@@ -1,3 +1,5 @@
+using Business.Abstract;
+using Business.Concrete;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,13 @@ builder.Services.AddControllersWithViews();
 var connectingString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<FruitkhaDbContext>
     (options => options.UseSqlServer(connectingString));
+
+
+
+
+
+builder.Services.AddScoped<ISliderManager, SliderManager>();
+
 
 var app = builder.Build();
 
@@ -25,6 +34,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
