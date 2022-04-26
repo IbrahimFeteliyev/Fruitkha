@@ -6,42 +6,41 @@ using Microsoft.AspNetCore.Mvc;
 namespace Web.Areas.admin.Controllers
 {
     [Area("admin")]
-    public class SliderController : Controller
+    public class DealController : Controller
     {
-        private readonly ISliderManager _sliderManager;
+        private readonly IDealManager _dealManager;
         private readonly IWebHostEnvironment _environment;
-
-        public SliderController(ISliderManager sliderManager, IWebHostEnvironment environment)
+        public DealController(IDealManager dealManager, IWebHostEnvironment environment)
         {
-            _sliderManager = sliderManager;
+            _dealManager = dealManager;
             _environment = environment;
         }
 
-        // GET: SliderController
+        // GET: DealController
         public IActionResult Index()
         {
-            var slider = _sliderManager.GetAll();
-            return View(slider);
+            var deal = _dealManager.GetAll();
+            return View(deal);
         }
 
-        // GET: SliderController/Details/5
-        public ActionResult Details(int? id)
+        // GET: DealController/Details/5
+        public IActionResult Details(int? id)
         {
             if (id == null) return NotFound();
-            var slider = _sliderManager.GetById(id.Value);
-            return View(slider);
+            var deal = _dealManager.GetById(id.Value);
+            return View(deal);
         }
 
-        // GET: SliderController/Create
+        // GET: DealController/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: SliderController/Create
+        // POST: DealController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Slider slider, IFormFile Image)
+        public async Task<IActionResult> Create(Deal deal, IFormFile Image)
         {
 
             string path = "/files/" + Guid.NewGuid() + Image.FileName;
@@ -52,8 +51,8 @@ namespace Web.Areas.admin.Controllers
 
             try
             {
-                slider.PhotoURL = path;     
-                _sliderManager.Create(slider);
+                deal.PhotoURL = path;
+                _dealManager.Create(deal);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -62,18 +61,18 @@ namespace Web.Areas.admin.Controllers
             }
         }
 
-        // GET: SliderController/Edit/5
+        // GET: DealController/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null) return NotFound();
-            var slider = _sliderManager.GetById(id.Value);
-            return View(slider);
+            var deal = _dealManager.GetById(id.Value);
+            return View(deal);
         }
 
-        // POST: SliderController/Edit/5
+        // POST: DealController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Slider slider,IFormFile Images)
+        public async Task<IActionResult> Edit(Deal deal, IFormFile Images)
         {
             if (Images != null)
             {
@@ -82,12 +81,12 @@ namespace Web.Areas.admin.Controllers
                 {
                     await Images.CopyToAsync(fileStream);
                 }
-                slider.PhotoURL = path;
+                deal.PhotoURL = path;
             }
+
             try
             {
-               
-                _sliderManager.Edit(slider);
+                _dealManager.Edit(deal);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -96,21 +95,21 @@ namespace Web.Areas.admin.Controllers
             }
         }
 
-        // GET: SliderController/Delete/5
-        public IActionResult Delete(int id)
+        // GET: DealController/Delete/5
+        public IActionResult Delete(int? id)
         {
-            var slider = _sliderManager.GetById(id);
-            return View(slider);
+            var deal = _dealManager.GetById(id.Value);
+            return View(deal);
         }
 
-        // POST: SliderController/Delete/5
+        // POST: DealController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, Slider slider)
+        public IActionResult Delete(int id, Deal deal)
         {
             try
             {
-                _sliderManager.Delete(slider);
+                _dealManager.Delete(deal);
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -14,5 +14,10 @@ namespace DataAccess
         }
 
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Deal> Deals { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<OurNew> OurNews { get; set; }
     }
 }

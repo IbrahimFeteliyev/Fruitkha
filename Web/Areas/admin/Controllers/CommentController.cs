@@ -6,44 +6,43 @@ using Microsoft.AspNetCore.Mvc;
 namespace Web.Areas.admin.Controllers
 {
     [Area("admin")]
-    public class SliderController : Controller
+    public class CommentController : Controller
     {
-        private readonly ISliderManager _sliderManager;
+        private readonly ICommentManager _commentManager;
         private readonly IWebHostEnvironment _environment;
-
-        public SliderController(ISliderManager sliderManager, IWebHostEnvironment environment)
+        public CommentController(ICommentManager commentManager, IWebHostEnvironment environment)
         {
-            _sliderManager = sliderManager;
+            _commentManager = commentManager;
             _environment = environment;
         }
 
-        // GET: SliderController
+
+        // GET: CommentController
         public IActionResult Index()
         {
-            var slider = _sliderManager.GetAll();
-            return View(slider);
+            var comment = _commentManager.GetAll();
+            return View(comment);
         }
 
-        // GET: SliderController/Details/5
-        public ActionResult Details(int? id)
+        // GET: CommentController/Details/5
+        public IActionResult Details(int? id)
         {
             if (id == null) return NotFound();
-            var slider = _sliderManager.GetById(id.Value);
-            return View(slider);
+            var comment = _commentManager.GetById(id.Value);
+            return View(comment);
         }
 
-        // GET: SliderController/Create
+        // GET: CommentController/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: SliderController/Create
+        // POST: CommentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Slider slider, IFormFile Image)
+        public async Task<IActionResult> Create(Comment comment, IFormFile Image)
         {
-
             string path = "/files/" + Guid.NewGuid() + Image.FileName;
             using (var fileStream = new FileStream(_environment.WebRootPath + path, FileMode.Create))
             {
@@ -52,8 +51,8 @@ namespace Web.Areas.admin.Controllers
 
             try
             {
-                slider.PhotoURL = path;     
-                _sliderManager.Create(slider);
+                comment.PhotoURL = path;
+                _commentManager.Create(comment);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -62,18 +61,18 @@ namespace Web.Areas.admin.Controllers
             }
         }
 
-        // GET: SliderController/Edit/5
+        // GET: CommentController/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null) return NotFound();
-            var slider = _sliderManager.GetById(id.Value);
-            return View(slider);
+            var comment = _commentManager.GetById(id.Value);
+            return View(comment);
         }
 
-        // POST: SliderController/Edit/5
+        // POST: CommentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Slider slider,IFormFile Images)
+        public async Task<IActionResult> Edit(Comment comment, IFormFile Images)
         {
             if (Images != null)
             {
@@ -82,12 +81,12 @@ namespace Web.Areas.admin.Controllers
                 {
                     await Images.CopyToAsync(fileStream);
                 }
-                slider.PhotoURL = path;
+                comment.PhotoURL = path;
             }
+
             try
             {
-               
-                _sliderManager.Edit(slider);
+                _commentManager.Edit(comment);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -96,21 +95,21 @@ namespace Web.Areas.admin.Controllers
             }
         }
 
-        // GET: SliderController/Delete/5
-        public IActionResult Delete(int id)
+        // GET: CommentController/Delete/5
+        public IActionResult Delete(int? id)
         {
-            var slider = _sliderManager.GetById(id);
-            return View(slider);
+            var comment = _commentManager.GetById(id.Value);
+            return View(comment);
         }
 
-        // POST: SliderController/Delete/5
+        // POST: CommentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, Slider slider)
+        public IActionResult Delete(int id, Comment comment)
         {
             try
             {
-                _sliderManager.Delete(slider);
+                _commentManager.Delete(comment);
                 return RedirectToAction(nameof(Index));
             }
             catch

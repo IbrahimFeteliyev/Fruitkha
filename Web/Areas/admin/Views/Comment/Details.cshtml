@@ -1,4 +1,4 @@
-﻿@model Entities.Slider
+﻿@model Entities.Comment
 
 @{
     ViewData["Title"] = "Details";
@@ -7,26 +7,32 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Slider</h4>
+    <h4>Comment</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Heading)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Heading)
+            @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Profession)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.Profession)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PhotoURL)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.PhotoURL)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ID)

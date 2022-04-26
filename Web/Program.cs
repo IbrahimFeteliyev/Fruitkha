@@ -17,7 +17,10 @@ builder.Services.AddDbContext<FruitkhaDbContext>
 
 
 builder.Services.AddScoped<ISliderManager, SliderManager>();
-
+builder.Services.AddScoped<IServiceManager, ServiceManager>();
+builder.Services.AddScoped<IProductManager, ProductManager>();
+builder.Services.AddScoped<IDealManager, DealManager>();
+builder.Services.AddScoped<ICommentManager, CommentManager>();
 
 var app = builder.Build();
 

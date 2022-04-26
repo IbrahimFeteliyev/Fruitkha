@@ -6,42 +6,42 @@ using Microsoft.AspNetCore.Mvc;
 namespace Web.Areas.admin.Controllers
 {
     [Area("admin")]
-    public class SliderController : Controller
+    public class ProductController : Controller
     {
-        private readonly ISliderManager _sliderManager;
+        private readonly IProductManager _productManager;
         private readonly IWebHostEnvironment _environment;
-
-        public SliderController(ISliderManager sliderManager, IWebHostEnvironment environment)
+        public ProductController(IProductManager productManager, IWebHostEnvironment environment)
         {
-            _sliderManager = sliderManager;
+            _productManager = productManager;
             _environment = environment;
         }
 
-        // GET: SliderController
+
+        // GET: ProductController
         public IActionResult Index()
         {
-            var slider = _sliderManager.GetAll();
-            return View(slider);
+            var product = _productManager.GetAll();
+            return View(product);
         }
 
-        // GET: SliderController/Details/5
+        // GET: ProductController/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null) return NotFound();
-            var slider = _sliderManager.GetById(id.Value);
-            return View(slider);
+            var product = _productManager.GetById(id.Value);
+            return View(product);
         }
 
-        // GET: SliderController/Create
+        // GET: ProductController/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: SliderController/Create
+        // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Slider slider, IFormFile Image)
+        public async Task<IActionResult> Create(Product product,IFormFile Image)
         {
 
             string path = "/files/" + Guid.NewGuid() + Image.FileName;
@@ -52,8 +52,8 @@ namespace Web.Areas.admin.Controllers
 
             try
             {
-                slider.PhotoURL = path;     
-                _sliderManager.Create(slider);
+                product.PhotoURL = path;
+                _productManager.Create(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -62,32 +62,34 @@ namespace Web.Areas.admin.Controllers
             }
         }
 
-        // GET: SliderController/Edit/5
+        // GET: ProductController/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null) return NotFound();
-            var slider = _sliderManager.GetById(id.Value);
-            return View(slider);
+            var product = _productManager.GetById(id.Value);
+            return View(product);
         }
 
-        // POST: SliderController/Edit/5
+        // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Slider slider,IFormFile Images)
+        public async Task<IActionResult> Edit(Product product, IFormFile Images)
         {
-            if (Images != null)
+            if(Images != null)
             {
                 string path = "/files/" + Guid.NewGuid() + Images.FileName;
                 using (var fileStream = new FileStream(_environment.WebRootPath + path, FileMode.Create))
                 {
                     await Images.CopyToAsync(fileStream);
                 }
-                slider.PhotoURL = path;
+                product.PhotoURL = path;
             }
+            
+
             try
             {
-               
-                _sliderManager.Edit(slider);
+                
+                _productManager.Edit(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -96,21 +98,21 @@ namespace Web.Areas.admin.Controllers
             }
         }
 
-        // GET: SliderController/Delete/5
-        public IActionResult Delete(int id)
+        // GET: ProductController/Delete/5
+        public IActionResult Delete(int? id)
         {
-            var slider = _sliderManager.GetById(id);
-            return View(slider);
+            var product = _productManager.GetById(id.Value);
+            return View(product);
         }
 
-        // POST: SliderController/Delete/5
+        // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, Slider slider)
+        public IActionResult Delete(int id, Product product)
         {
             try
             {
-                _sliderManager.Delete(slider);
+                _productManager.Delete(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
