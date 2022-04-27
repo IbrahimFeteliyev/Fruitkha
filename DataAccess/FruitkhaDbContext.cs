@@ -19,5 +19,6 @@ namespace DataAccess
         public DbSet<Deal> Deals { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<OurNew> OurNews { get; set; }
+        public DbSet<Company> Companies { get; set; }
     }
 }

@@ -21,6 +21,10 @@ builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IProductManager, ProductManager>();
 builder.Services.AddScoped<IDealManager, DealManager>();
 builder.Services.AddScoped<ICommentManager, CommentManager>();
+builder.Services.AddScoped<IOurNewManager, OurNewManager>();
+builder.Services.AddScoped<ICompanyManager, CompanyManager>();
+
+
 
 var app = builder.Build();
 

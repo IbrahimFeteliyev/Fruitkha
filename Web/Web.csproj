@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\admin\ViewModel\" />
-    <Folder Include="Areas\admin\Views\OurNew\" />
     <Folder Include="wwwroot\files\" />
   </ItemGroup>
 

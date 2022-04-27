@@ -14,7 +14,9 @@ namespace Web.Controllers
         private readonly IProductManager _productManager;
         private readonly IDealManager _dealManager;
         private readonly ICommentManager _commentManager;
-        public HomeController(ILogger<HomeController> logger, ISliderManager sliderManager, IServiceManager serviceManager, IProductManager productManager, IDealManager dealManager, ICommentManager commentManager)
+        private readonly IOurNewManager _ournewManager;
+        private readonly ICompanyManager _companyManager;
+        public HomeController(ILogger<HomeController> logger, ISliderManager sliderManager, IServiceManager serviceManager, IProductManager productManager, IDealManager dealManager, ICommentManager commentManager, IOurNewManager ournewManager, ICompanyManager companyManager)
         {
             _logger = logger;
             _sliderManager = sliderManager;
@@ -22,6 +24,8 @@ namespace Web.Controllers
             _productManager = productManager;
             _dealManager = dealManager;
             _commentManager = commentManager;
+            _ournewManager = ournewManager;
+            _companyManager = companyManager;
         }
 
         public IActionResult Index()
@@ -33,6 +37,8 @@ namespace Web.Controllers
                 Products = _productManager.GetAll(),
                 Deals = _dealManager.GetAll(),
                 Comments = _commentManager.GetAll(),
+                OurNews = _ournewManager.GetAll(),
+                Companies = _companyManager.GetAll(),
             };
 
             return View(vm);
