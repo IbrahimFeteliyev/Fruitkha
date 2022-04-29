@@ -10,6 +10,7 @@ namespace Business.Abstract
     public interface IProductManager
     {
         List<Product> GetAll();
+        List<Product> GetAllProducts();
         Product GetById(int id);
         void Create(Product product);
         void Edit(Product product);

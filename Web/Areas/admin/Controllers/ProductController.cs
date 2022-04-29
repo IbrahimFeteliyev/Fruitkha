@@ -20,7 +20,7 @@ namespace Web.Areas.admin.Controllers
         // GET: ProductController
         public IActionResult Index()
         {
-            var product = _productManager.GetAll();
+            var product = _productManager.GetAllProducts();
             return View(product);
         }
 

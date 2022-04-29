@@ -22,5 +22,7 @@ namespace DataAccess
         public DbSet<Company> Companies { get; set; }
         public DbSet<OurTeam> OurTeams { get; set; }
         public DbSet<ContactUs> ContactUss { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
     }
 }

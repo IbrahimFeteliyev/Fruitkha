@@ -10,7 +10,7 @@
     <!-- single home slider -->
     @foreach (var item in Model.Sliders)
     {
-        <div style="background: url(@item.PhotoURL)" class="single-homepage-slider img-fluid">
+        <div style="background-image: url(@item.PhotoURL)" class="single-homepage-slider img-fluid">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
@@ -44,7 +44,7 @@
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <div class="list-box d-flex align-items-center">
                         <div class="list-icon">
-                            <i class="fas fa-shipping-fast"></i>
+                            <i class="@item.Icon"></i>
                         </div>
                         <div class="content">
                             <h3>@item.Title</h3>
@@ -76,7 +76,7 @@
                 <div class="col-lg-4 col-md-6 text-center">
                     <div class="single-product-item">
                         <div class="product-image">
-                            <a href="single-product.html"><img src="@item.PhotoURL" alt=""></a>
+                            <a href="/product/details/@item.ID"><img src="@item.PhotoURL" alt=""></a>
                         </div>
                         <h3>@item.Name</h3>
                         <p class="product-price"><span>Per Kg</span> @item.Price $ </p>
@@ -145,11 +145,8 @@
                             </div>
                         </div>
                     }
-                    
-                    <div class="single-testimonial-slider">
-                       
-                        
-                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -204,24 +201,25 @@
             @foreach (var item in Model.OurNews)
             {
                 <div class="col-lg-4 col-md-6">
-                <div class="single-latest-news">
-                    <a href="single-news.html"><div class="latest-news-bg news-bg-1">
-                        <img class="img-fluid" src="@item.PhotoURL" />
-                    </div></a>
-                    <div class="news-text-box">
-                        <h3><a href="single-news.html">@item.Title</a></h3>
-                        <p class="blog-meta">
-                            <span class="author"><i class="fas fa-user"></i> Admin</span>
-                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                        </p>
-                        <p class="excerpt">@item.Description</p>
-                        <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                    <div class="single-latest-news">
+                        <a href="single-news.html">
+                            <div style="background-image:@item.PhotoURL" class="latest-news-bg">
+                            </div>
+                        </a>
+                        <div class="news-text-box">
+                            <h3><a href="single-news.html">@item.Title</a></h3>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            </p>
+                            <p class="excerpt">@item.Description</p>
+                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
-            
-           
+
+
         </div>
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -240,10 +238,10 @@
                     @foreach (var item in Model.Companies)
                     {
                         <div class="single-logo-item">
-                        <img src="@item.Logo" alt="">
-                    </div>
+                            <img src="@item.Logo" alt="">
+                        </div>
                     }
-                    
+
                 </div>
             </div>
         </div>

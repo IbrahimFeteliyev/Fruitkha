@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\admin\ViewModel\" />
+    <Folder Include="Areas\admin\Views\Category\" />
     <Folder Include="wwwroot\files\" />
   </ItemGroup>
 

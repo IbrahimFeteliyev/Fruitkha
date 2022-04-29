@@ -24,6 +24,8 @@ builder.Services.AddScoped<ICommentManager, CommentManager>();
 builder.Services.AddScoped<IOurNewManager, OurNewManager>();
 builder.Services.AddScoped<ICompanyManager, CompanyManager>();
 builder.Services.AddScoped<IOurTeamManager, OurTeamManager>();
+builder.Services.AddScoped<IContactUsManager, ContactUsManager>();
+
 
 
 

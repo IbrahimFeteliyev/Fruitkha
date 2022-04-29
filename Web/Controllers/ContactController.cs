@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Abstract;
+using Entities;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Web.Models;
 using Web.ViewModels;
@@ -8,13 +10,15 @@ namespace Web.Controllers
     public class ContactController : Controller
     {
         private readonly ILogger<ContactController> _logger;
+        private readonly IContactUsManager _contactUsManager;
 
-        public ContactController(ILogger<ContactController> logger)
+        public ContactController(ILogger<ContactController> logger, IContactUsManager contactUsManager)
         {
             _logger = logger;
+            _contactUsManager = contactUsManager;
         }
 
-        public IActionResult Contact()
+        public IActionResult Index()
         {
             ContactVM vm = new()
             {
@@ -22,6 +26,19 @@ namespace Web.Controllers
             };
 
             return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult Contact(ContactUs contactus)
+        {
+            if (contactus.Name != null & contactus.Email != null & contactus.Phone != null & contactus.Subject != null & contactus.Message != null )
+            {
+
+                _contactUsManager.PostMessage(contactus);
+
+            }
+
+            return RedirectToAction(nameof(Contact));
         }
 
         public IActionResult Privacy()

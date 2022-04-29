@@ -40,6 +40,11 @@ namespace Business.Concrete
 
         public List<Product> GetAll()
         {
+            var product = _context.Products.Take(3).ToList();
+            return product;
+        }
+        public List<Product> GetAllProducts()
+        {
             var product = _context.Products.ToList();
             return product;
         }

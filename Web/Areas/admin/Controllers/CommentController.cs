@@ -98,6 +98,7 @@ namespace Web.Areas.admin.Controllers
         // GET: CommentController/Delete/5
         public IActionResult Delete(int? id)
         {
+            if (id == null) return NotFound();
             var comment = _commentManager.GetById(id.Value);
             return View(comment);
         }

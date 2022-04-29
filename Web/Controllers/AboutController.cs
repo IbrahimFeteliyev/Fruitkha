@@ -25,7 +25,7 @@ namespace Web.Controllers
 
 
 
-        public IActionResult About()
+        public IActionResult Index()
         {
             AboutVM vm = new()
             {
