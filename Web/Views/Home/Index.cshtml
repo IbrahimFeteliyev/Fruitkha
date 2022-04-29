@@ -10,7 +10,7 @@
     <!-- single home slider -->
     @foreach (var item in Model.Sliders)
     {
-        <div class="single-homepage-slider homepage-bg-1">
+        <div style="background: url(@item.PhotoURL)" class="single-homepage-slider img-fluid">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">

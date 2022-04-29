@@ -20,5 +20,7 @@ namespace DataAccess
         public DbSet<Comment> Comments { get; set; }
         public DbSet<OurNew> OurNews { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<OurTeam> OurTeams { get; set; }
+        public DbSet<ContactUs> ContactUss { get; set; }
     }
 }
