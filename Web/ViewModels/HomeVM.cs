@@ -9,7 +9,7 @@ namespace Web.ViewModels
         public List<Product> Products { get; set; }
         public List<Deal> Deals { get; set; }
         public List<Comment> Comments { get; set; }
-        public List<OurNew> OurNews { get; set; }
+        public List<New> News { get; set; }
         public List<Company> Companies { get; set; }
 
     }

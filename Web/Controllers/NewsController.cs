@@ -19,7 +19,7 @@ namespace Web.Controllers
         }
 
         // GET: NewsController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }

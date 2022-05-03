@@ -1,6 +1,8 @@
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess;
+using Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,8 @@ builder.Services.AddDbContext<FruitkhaDbContext>
     (options => options.UseSqlServer(connectingString));
 
 
+builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<FruitkhaDbContext>();
 
 
 
@@ -21,13 +25,17 @@ builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IProductManager, ProductManager>();
 builder.Services.AddScoped<IDealManager, DealManager>();
 builder.Services.AddScoped<ICommentManager, CommentManager>();
-builder.Services.AddScoped<IOurNewManager, OurNewManager>();
+builder.Services.AddScoped<INewManager, NewManager>();
 builder.Services.AddScoped<ICompanyManager, CompanyManager>();
 builder.Services.AddScoped<IOurTeamManager, OurTeamManager>();
 builder.Services.AddScoped<IContactUsManager, ContactUsManager>();
 
 
-
+builder.Services.ConfigureApplicationCookie(option =>
+{
+    option.LoginPath = "/admin/auth/login";
+    option.AccessDeniedPath = "/admin/auth/login";
+});
 
 
 var app = builder.Build();
