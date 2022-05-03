@@ -47,11 +47,12 @@ namespace Business.Concrete
             return category;
         }
 
-        public Category GetById(int id)
+        public Category GetById(int? id)
         {
             var category = _context.Categories.FirstOrDefault(x => x.ID == id);
                 return category;
         }
+
 
     }
 }

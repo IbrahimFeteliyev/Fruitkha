@@ -1,115 +1,56 @@
 ﻿@{
-    Layout = "_LayoutAuth";
+    Layout = "_LayoutLog";
 }
 
-@model RegisterVM
-
-
-<body class="hold-transition register-page">
-<div class="register-box">
-  <div class="register-logo">
-    <a href="/"><b>Admin</b>LTE</a>
-  </div>
-
-  <div class="card">
-    <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
-
-      <form  method="post">
-        <div class="input-group">
-          <input type="text" class="form-control" asp-for="UserName" placeholder="Username">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
+  <div id="containerbar" class="containerbar authenticate-bga">
+        <!-- Start Container -->
+        <div class="container">
+            <div class="auth-box register-box">
+                <!-- Start row -->
+                <div class="row no-gutters align-items-center justify-content-center">
+                    <!-- Start col -->
+                    <div class="col-md-6 col-lg-5">
+                        <!-- Start Auth Box -->
+                        <div class="auth-box-right">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="#">
+                                        <div class="form-head">
+                                            <a href="index.html" class="logo"><img src="assets/images/logo.svg" class="img-fluid" alt="logo"></a>
+                                        </div> 
+                                        <h4 class="text-primary my-4">Sign Up !</h4>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="username" placeholder="Enter Username here" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="email" placeholder="Enter Email here" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="password" placeholder="Enter Password here" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="re-password" placeholder="Re-Type Password" required>
+                                        </div>
+                                        <div class="form-row mb-3">
+                                            <div class="col-sm-12">
+                                                <div class="custom-control custom-checkbox text-left">
+                                                    <input type="checkbox" class="custom-control-input" id="terms">
+                                                    <label class="custom-control-label font-14" for="terms">I Agree to Terms & Conditions of Orbiter</label>
+                                                </div>                                
+                                            </div>
+                                        </div>                          
+                                      <button type="submit" class="btn btn-success btn-lg btn-block font-18">Register</button>
+                                    </form>
+                                    <p class="mb-0 mt-3">Already have an account? <a href="user-login.html">Log in</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Auth Box -->
+                    </div>
+                    <!-- End col -->
+                </div>
+                <!-- End row -->
             </div>
-          </div>
         </div>
-         <span class="mb-3" asp-validation-for="UserName"></span>
-
-        <div class="input-group ">
-          <input type="text" class="form-control" asp-for="Name" placeholder="Firstname">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <span class="mb-3" asp-validation-for="Name"></span>
-
-        <div class="input-group">
-          <input type="text" class="form-control" asp-for="Surname" placeholder="Surname">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <span class="mb-3" asp-validation-for="Surname"></span>
-
-        <div class="input-group">
-          <input type="email" class="form-control" asp-for="Email" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <span class="mb-3" asp-validation-for="Email"></span>
-
-        <div class="input-group">
-          <input type="password" class="form-control" asp-for="Password" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <span class="mb-3" asp-validation-for="Password"></span>
-
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" name="RetypePassword" placeholder="Retype password">
-          <div class="input-group-append"> 
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-            <span>@ViewBag.Password</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <input type="submit" value="Register" class="btn btn-primary btn-block" />
-          </div>
-          <!-- /.col -->
-        </div>
-
-        <input type="hidden" asp-for="PhotoURL" value="aaa" />
-      </form>
-
-      <div class="social-auth-links text-center">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
-        </a>
-      </div>
-
-      <a href="login.html" class="text-center">I already have a membership</a>
+        <!-- End Container -->
     </div>
-    <!-- /.form-box -->
-  </div><!-- /.card -->
-</div>
-
-</body>

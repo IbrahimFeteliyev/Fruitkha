@@ -1,38 +1,36 @@
 ﻿using Business.Abstract;
 using Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Web.Areas.admin.Controllers
+namespace WebUI.Areas.Admin.Controllers
 {
     [Area("admin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryManager _categoryManager;
+        private readonly IWebHostEnvironment _environment;
 
-        public CategoryController(ICategoryManager categoryManager)
+        public CategoryController(ICategoryManager categoryManager, IWebHostEnvironment environment)
         {
             _categoryManager = categoryManager;
+            _environment = environment;
         }
 
         // GET: CategoryController
-        public IActionResult Index()
+        public ActionResult Index()
         {
-            var categories = _categoryManager.GetAll();
-            return View(categories);
+            return View(_categoryManager.GetAll());
         }
 
         // GET: CategoryController/Details/5
-        public IActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null) return NotFound();
-            var category = _categoryManager.GetById(id.Value);
-            return View(category);
+            return View();
         }
 
         // GET: CategoryController/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
             return View();
         }
@@ -40,7 +38,7 @@ namespace Web.Areas.admin.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category category)
+        public ActionResult Create(Category category)
         {
             try
             {
@@ -54,16 +52,15 @@ namespace Web.Areas.admin.Controllers
         }
 
         // GET: CategoryController/Edit/5
-        public IActionResult Edit(int id)
+        public ActionResult Edit(int id)
         {
-            var category = _categoryManager.GetById(id);
-            return View(category);
+            return View(_categoryManager.GetById(id));
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Category category)
+        public ActionResult Edit(int id, Category category)
         {
             try
             {
@@ -77,18 +74,18 @@ namespace Web.Areas.admin.Controllers
         }
 
         // GET: CategoryController/Delete/5
-        public IActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null) return NotFound();
-            var category = _categoryManager.GetById(id.Value);
-            return View(category);
+            return View();
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, Category category)
+        public ActionResult Delete(int id, Category category)
         {
+            if (id == null) return NotFound();
+            if (category == null) return NotFound();
             try
             {
                 _categoryManager.Delete(category);

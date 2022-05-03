@@ -15,7 +15,8 @@ builder.Services.AddDbContext<FruitkhaDbContext>
     (options => options.UseSqlServer(connectingString));
 
 
-builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
+builder.Services.AddDefaultIdentity<MyUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<FruitkhaDbContext>();
 
 
@@ -25,10 +26,11 @@ builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IProductManager, ProductManager>();
 builder.Services.AddScoped<IDealManager, DealManager>();
 builder.Services.AddScoped<ICommentManager, CommentManager>();
-builder.Services.AddScoped<INewManager, NewManager>();
 builder.Services.AddScoped<ICompanyManager, CompanyManager>();
 builder.Services.AddScoped<IOurTeamManager, OurTeamManager>();
 builder.Services.AddScoped<IContactUsManager, ContactUsManager>();
+builder.Services.AddScoped<ICategoryManager, CategoryManager>();
+
 
 
 builder.Services.ConfigureApplicationCookie(option =>
@@ -47,6 +49,15 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -68,5 +79,7 @@ app.UseEndpoints(endpoints =>
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();
