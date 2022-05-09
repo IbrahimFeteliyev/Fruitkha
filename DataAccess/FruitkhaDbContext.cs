@@ -24,8 +24,8 @@ namespace DataAccess
         public DbSet<OurTeam> OurTeams { get; set; }
         public DbSet<ContactUs> ContactUss { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<News> News { get; set; }
-
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
 
 

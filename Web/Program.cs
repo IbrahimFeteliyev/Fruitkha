@@ -30,13 +30,15 @@ builder.Services.AddScoped<ICompanyManager, CompanyManager>();
 builder.Services.AddScoped<IOurTeamManager, OurTeamManager>();
 builder.Services.AddScoped<IContactUsManager, ContactUsManager>();
 builder.Services.AddScoped<ICategoryManager, CategoryManager>();
+builder.Services.AddScoped<ILocationManager, LocationManager>();
+builder.Services.AddScoped<IArticleManager, ArticleManager>();
 
 
 
 builder.Services.ConfigureApplicationCookie(option =>
 {
-    option.LoginPath = "/admin/auth/login";
-    option.AccessDeniedPath = "/admin/auth/login";
+    option.LoginPath = "/auth/login";
+    option.AccessDeniedPath = "/auth/login";
 });
 
 

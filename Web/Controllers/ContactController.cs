@@ -11,25 +11,27 @@ namespace Web.Controllers
     {
         private readonly ILogger<ContactController> _logger;
         private readonly IContactUsManager _contactUsManager;
+        private readonly ILocationManager _locationManager;
 
-        public ContactController(ILogger<ContactController> logger, IContactUsManager contactUsManager)
+        public ContactController(ILogger<ContactController> logger, IContactUsManager contactUsManager, ILocationManager locationManager)
         {
             _logger = logger;
             _contactUsManager = contactUsManager;
+            _locationManager = locationManager;
         }
 
         public IActionResult Index()
         {
             ContactVM vm = new()
             {
-                
+                Locations = _locationManager.GetAll(),
             };
 
             return View(vm);
         }
 
         [HttpPost]
-        public IActionResult Contact(ContactUs contactus)
+        public IActionResult Index(ContactUs contactus)
         {
             if (contactus.Name != null & contactus.Email != null & contactus.Phone != null & contactus.Subject != null & contactus.Message != null )
             {
@@ -38,7 +40,7 @@ namespace Web.Controllers
 
             }
 
-            return RedirectToAction(nameof(Contact));
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()

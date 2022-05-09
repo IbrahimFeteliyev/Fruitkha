@@ -2,7 +2,7 @@
 using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+    
 namespace Web.Areas.admin.Controllers
 {
     [Area("admin")]

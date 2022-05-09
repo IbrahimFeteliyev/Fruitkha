@@ -39,6 +39,7 @@ namespace Business.Concrete
 
         public void PostMessage(ContactUs contactus)
         {
+            contactus.PublishDate = DateTime.Now;
             _context.ContactUss.Add(contactus);
             _context.SaveChanges();
         }

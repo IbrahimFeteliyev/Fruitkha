@@ -3,7 +3,7 @@ using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebUI.Areas.Admin.Controllers
+namespace Web.Areas.admin.Controllers
 {
     [Area("admin")]
     public class CategoryController : Controller

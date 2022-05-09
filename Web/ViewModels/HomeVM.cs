@@ -10,6 +10,8 @@ namespace Web.ViewModels
         public List<Deal> Deals { get; set; }
         public List<Comment> Comments { get; set; }
         public List<Company> Companies { get; set; }
+        public List<Article> Articles { get; set; }
+        public MyUser MyUser { get; set; }
 
     }
 }

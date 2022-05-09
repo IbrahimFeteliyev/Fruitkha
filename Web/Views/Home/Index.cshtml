@@ -198,25 +198,25 @@
         </div>
 
         <div class="row">
-           @* @foreach (var item in Model.News)
+            @foreach (var item in Model.Articles)
             {
                 <div class="col-lg-4 col-md-6">
                     <div class="single-latest-news">
                         <a href="single-news.html">
-                            <div style="background-image: Url(@item.PhotoURL)" class="latest-news-bg">
+                            <div style="background-image:Url(@item.PhotoURL)" class="latest-news-bg">
                             </div>
                         </a>
                         <div class="news-text-box">
                             <h3><a href="single-news.html">@item.Title</a></h3>
                             <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                                <span class="author"><i class="fas fa-user"></i>@item.MyUser.Name</span>
+                                <span class="date"><i class="fas fa-calendar"></i>@item.PublishDate.ToString("dd MM yyyy")</span>
                             </p>
                             <p class="excerpt">@item.Description</p>
-                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                            <a href="/news/details/@item.ID" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
                         </div>
                     </div>
-               *@ </div>
+                </div>
             }
 
 
