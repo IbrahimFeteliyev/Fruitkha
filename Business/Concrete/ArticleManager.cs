@@ -46,7 +46,8 @@ namespace Business.Concrete
                 pageNo = 1;
             }
             int currentPage = 2 * pageNo.Value - 2;
-            var articles = _context.Articles.Include(x => x.MyUser).Skip(currentPage).Take(2).ToList();
+
+            var articles = _context.Articles.Include(x => x.MyUser).Skip(currentPage).Take(3).ToList();
             return articles;
         }
 

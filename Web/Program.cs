@@ -32,7 +32,7 @@ builder.Services.AddScoped<IContactUsManager, ContactUsManager>();
 builder.Services.AddScoped<ICategoryManager, CategoryManager>();
 builder.Services.AddScoped<ILocationManager, LocationManager>();
 builder.Services.AddScoped<IArticleManager, ArticleManager>();
-
+builder.Services.AddScoped<IUserCommentManager, UserCommentManager>();
 
 
 builder.Services.ConfigureApplicationCookie(option =>

@@ -9,10 +9,12 @@ namespace Web.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly IProductManager _productManager;
-        public ProductController(ILogger<ProductController> logger, IProductManager productManager)
+        private readonly ICategoryManager _categoryManager;
+        public ProductController(ILogger<ProductController> logger, IProductManager productManager, ICategoryManager categoryManager)
         {
             _logger = logger;
             _productManager = productManager;
+            _categoryManager = categoryManager;
         }
 
         // GET: SingleProductController
@@ -22,7 +24,7 @@ namespace Web.Controllers
             {
 
                 Products = _productManager.GetAllProducts(),
-
+                
             };
 
             return View(vm);
@@ -35,8 +37,11 @@ namespace Web.Controllers
             SingleProductVM vm = new()
             {
                 Product = _productManager.GetById(id),
+                Products = _productManager.GetAll(),
+                Categories = _categoryManager.GetAll(), 
 
             };
+
 
             return View(vm);
         }

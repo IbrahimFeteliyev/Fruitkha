@@ -10,10 +10,12 @@ namespace Web.Areas.admin.Controllers
     {
         private readonly IProductManager _productManager;
         private readonly IWebHostEnvironment _environment;
-        public ProductController(IProductManager productManager, IWebHostEnvironment environment)
+        private readonly ICategoryManager _categoryManager;
+        public ProductController(IProductManager productManager, IWebHostEnvironment environment, ICategoryManager categoryManager)
         {
             _productManager = productManager;
             _environment = environment;
+            _categoryManager = categoryManager;
         }
 
 
@@ -27,6 +29,7 @@ namespace Web.Areas.admin.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.Categories = _categoryManager.GetAll();
             if (id == null) return NotFound();
             var product = _productManager.GetById(id.Value);
             return View(product);
@@ -35,6 +38,7 @@ namespace Web.Areas.admin.Controllers
         // GET: ProductController/Create
         public IActionResult Create()
         {
+            ViewBag.Categories = _categoryManager.GetAll();
             return View();
         }
 
@@ -65,6 +69,7 @@ namespace Web.Areas.admin.Controllers
         // GET: ProductController/Edit/5
         public IActionResult Edit(int? id)
         {
+            ViewBag.Categories = _categoryManager.GetAll();
             if (id == null) return NotFound();
             var product = _productManager.GetById(id.Value);
             return View(product);
@@ -101,6 +106,7 @@ namespace Web.Areas.admin.Controllers
         // GET: ProductController/Delete/5
         public IActionResult Delete(int? id)
         {
+            ViewBag.Categories = _categoryManager.GetAll();
             var product = _productManager.GetById(id.Value);
             return View(product);
         }

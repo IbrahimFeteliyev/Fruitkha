@@ -26,6 +26,8 @@ namespace DataAccess
         public DbSet<Category> Categories { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<UserComment> UserComments { get; set; }
+        
 
 
 
