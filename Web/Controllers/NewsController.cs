@@ -57,7 +57,7 @@ namespace Web.Controllers
         {
             usercomment.ArticleId = Id;
             _usercommentManager.AddComment(usercomment);
-            return RedirectToAction("Index", "Article", new { id = Id });
+            return RedirectToAction("Details", "News", new { id = Id });
         }
     }
 }
